@@ -48,10 +48,14 @@ function bindTooltip(){
 
             var target = null;
 
-            if (jQuery(e.target).find('img').length == 0) {
-                target = jQuery(e.target).parent();
+            if(el.is('tooltip')) {
+                if (jQuery(e.target).find('img').length == 0) {
+                    target = jQuery(e.target).parent();
+                } else {
+                    target = jQuery(e.target);
+                }
             } else {
-                target = jQuery(e.target);
+                target = el;
             }
 
             var targetOffsetTop = target.offset().top;
@@ -61,8 +65,8 @@ function bindTooltip(){
 
             targetOffsetTop -= jQuery(document).scrollTop();
 
-            var tooltipHeight = tooltip.innerHeight() + 30;
-            var tooltipWidth = tooltip.width() + 30;
+            var tooltipHeight = tooltip.innerHeight();
+            var tooltipWidth = tooltip.width();
             var pageWidth = jQuery(window).width();
             var pageHeight = jQuery(window).height();
 
@@ -125,11 +129,11 @@ function bindTooltip(){
                 };
 
                 if(el.is('tooltip')) {
-                    design.top = targetOffsetTop - tooltip.innerHeight();
+                    design.top = targetOffsetTop - tooltipHeight;
                     design.left = targetOffsetLeft + targetWidth;
                 } else {
-                    design.top = targetOffsetTop - targetHeight;
-                    design.left = targetOffsetLeft + targetWidth + 30;
+                    design.top = targetOffsetTop - tooltipHeight;
+                    design.left = targetOffsetLeft + targetWidth;
                 }
             }
 
@@ -163,11 +167,11 @@ function bindTooltip(){
                 };
 
                 if(el.is('tooltip')) {
-                    design.top = targetOffsetTop - tooltip.innerHeight();
-                    design.left = targetOffsetLeft - tooltip.width() - 30;
+                    design.top = targetOffsetTop - tooltipHeight;
+                    design.left = targetOffsetLeft - tooltipWidth;
                 } else {
-                    design.top = targetOffsetTop - tooltip.innerHeight() + 30;
-                    design.left = targetOffsetLeft - tooltip.width()- 30;
+                    design.top = targetOffsetTop - tooltipHeight;
+                    design.left = targetOffsetLeft - tooltipWidth - 30;
                 }
             }
 
