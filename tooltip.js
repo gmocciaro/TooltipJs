@@ -39,7 +39,7 @@ function bindTooltip(){
 
         var HtmlClass = "ttp-3kkjso";
 
-        el.unbind().mouseenter(function(e){
+        el.off("mouseenter").mouseenter(function(e){
             e.preventDefault();
 
             jQuery('body').append('<div class="' + HtmlClass + '">' + tip + '</div>');
@@ -226,7 +226,7 @@ function bindTooltip(){
             }
         });
 
-        el.bind('mouseleave', function(e) {
+        el.off("mouseleave").bind('mouseleave', function(e) {
             jQuery('.' + HtmlClass + '').remove();
             el.css({
                 'z-index'       : 99,
